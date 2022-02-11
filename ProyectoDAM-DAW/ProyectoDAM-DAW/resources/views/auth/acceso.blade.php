@@ -16,7 +16,7 @@
                     <label for="password">Contraseña</label>
                 </div>
                 <div class="input-field col s12">
-                    <a href="{{ route('email') }}" title="Cambiar contraseña">
+                    <a href="" title="Cambiar contraseña">
                         <button class="btn waves-effect waves-light" type="button">Cambiar contraseña
                             <i class="material-icons right">help</i>
                         </button>

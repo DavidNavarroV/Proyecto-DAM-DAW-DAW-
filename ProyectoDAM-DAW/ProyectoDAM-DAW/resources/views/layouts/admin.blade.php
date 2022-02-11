@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Panel de administración') }}</title>
+    <title>{{ config(/*'app.name',*/ 'Panel de administración') }}</title>
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -41,9 +41,9 @@
                         <a href="{{ url('admin/noticias') }}" title="Noticias">Noticias</a>
                     </li>
                 @endif
-                @if( Auth::user()->usuarios )
+                @if( Auth::user()->jugadores )
                     <li>
-                        <a href="{{ url('admin/usuarios') }}" title="Usuarios">Usuarios</a>
+                        <a href="{{ url('admin/jugadores') }}" title="Jugadores">Jugadores</a>
                     </li>
                 @endif
                 <li>
@@ -71,9 +71,9 @@
                 <a href="{{ url('admin/noticias') }}" title="Noticias">Noticias</a>
             </li>
         @endif
-        @if( Auth::user()->usuarios )
+        @if( Auth::user()->jugadores )
             <li>
-                <a href="{{ url('admin/usuarios') }}" title="Usuarios">Usuarios</a>
+                <a href="{{ url('admin/jugadores') }}" title="Jugadores">jugadores</a>
             </li>
         @endif
         <li>
@@ -98,7 +98,7 @@
         @if( Auth::check() )
 
             <h2>
-                Usuario: <strong>{{Auth::user()->nombre}}</strong>
+                Usuario: <strong>{{Auth::user()->jugador}}</strong>
             </h2>
 
         @else
@@ -120,8 +120,8 @@
 <!--Footer-->
 <footer class="center-align">
     © <?php echo date("Y") ?> Panel de Administración.
-    <a href="https://jairogarciarincon.com" target="_blank" title="Jairo García Rincón">
-        Jairo García Rincón
+    <a href="<?php route('acerca-de')?>" target="_blank" title="EQUIPO DAM-DAW">
+        EQUIPO DAM-DAW
     </a>
 </footer>
 

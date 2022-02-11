@@ -12,4 +12,8 @@ class AdminController extends Controller
     {
         return view('admin.index');
     }
+    public function acercade()
+    {
+        return view('admin.acerca-de');
+    }
 }

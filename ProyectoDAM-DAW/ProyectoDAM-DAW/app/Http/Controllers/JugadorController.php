@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Usuario;
+use App\Models\Jugador;
 use App\Http\Requests\UsuarioRequest;
 
-class UsuarioController extends Controller
+class JugadorController extends Controller
 {
     public function __construct()
     {
@@ -25,10 +25,10 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //Obtengo todos los usuarios ordenados por nombre
-        $rowset = Usuario::orderBy("nombre","ASC")->get();
+        //Obtengo todos los usuarios ordenados por jugador
+        $rowset = Jugador::orderBy("jugador","ASC")->get();
 
-        return view('admin.usuarios.index',[
+        return view('admin.jugador.index',[
             'rowset' => $rowset,
         ]);
     }
@@ -41,9 +41,9 @@ class UsuarioController extends Controller
     public function crear()
     {
         //Creo un nuevo usuario vacío
-        $row = new Usuario();
+        $row = new Jugador();
 
-        return view('admin.usuarios.editar',[
+        return view('admin.jugador.editar',[
             'row' => $row,
         ]);
     }
@@ -56,15 +56,15 @@ class UsuarioController extends Controller
      */
     public function guardar(UsuarioRequest $request)
     {
-        Usuario::create([
-            'nombre' => $request->nombre,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'usuarios' => ($request->usuarios) ? 1 : 0,
+        Jugador::create([
+            'jugador' => $request->jugador,
+            'correo' => $request->correo,
+            'contraseña' => Hash::make($request->contraseña),
+            'jugadores' => ($request->jugadores) ? 1 : 0,
             'noticias' => ($request->noticias) ? 1 : 0,
         ]);
 
-        return redirect('admin/usuarios')->with('success', 'Usuario <strong>'.$request->nombre.'</strong> creado');
+        return redirect('admin/jugadores')->with('success', 'Usuario <strong>'.$request->jugador.'</strong> creado');
     }
 
     /**
@@ -76,9 +76,9 @@ class UsuarioController extends Controller
     public function editar($id)
     {
         //Obtengo el usuario o muestro error
-        $row = Usuario::where('id', $id)->firstOrFail();//en el caso de tener dos id saca el primero
+        $row = Jugador::where('id', $id)->firstOrFail();//en el caso de tener dos id saca el primero
 
-        return view('admin.usuarios.editar',[
+        return view('admin.jugadores.editar',[
             'row' => $row,
         ]);
     }
@@ -90,14 +90,14 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(UsuarioRequest $request, $nombre)
+    public function actualizar(UsuarioRequest $request, $jugador)
     {
-        $row = Usuario::firstOrFail($nombre);
+        $row = Jugador::firstOrFail($jugador);
 
-        Usuario::where('id', $row->id)->get(); ([
-            'nombre' => $request->nombre,
-            'email' => $request->email,
-            'password' => ($request->cambiar_clave) ? Hash::make($request->password) : $row->password,
+        Jugador::where('id', $row->id)->get(); ([
+            'jugador' => $request->jugador,
+            'correo' => $request->correo,
+            'contraseña' => ($request->cambiar_clave) ? Hash::make($request->contraseña) : $row->contraseña,
 
         ]);
 
@@ -111,13 +111,13 @@ class UsuarioController extends Controller
      */
     public function activar($id)
     {
-        $row = Usuario::findOrFail($id);//encuentra el id o falle
+        $row = Jugador::findOrFail($id);//encuentra el id o falle
         $valor = ($row->activo) ? 0 : 1;
         $texto = ($row->activo) ? "desactivado" : "activado";
 
-        Usuario::where('id', $row->id)->update(['activo' => $valor]);
+        Jugador::where('id', $row->id)->update(['activo' => $valor]);
 
-        return redirect('admin/usuarios')->with('success', 'Usuario <strong>'.$row->name.'</strong> '.$texto.'.');
+        return redirect('admin/jugadores')->with('success', 'Usuario <strong>'.$row->name.'</strong> '.$texto.'.');
     }
 
     /**
@@ -128,10 +128,10 @@ class UsuarioController extends Controller
      */
     public function borrar($id)
     {
-        $row = Usuario::findOrFail($id);
+        $row = Jugador::findOrFail($id);
 
-        Usuario::destroy($row->id);
+        Jugador::destroy($row->id);
 
-        return redirect('admin/usuarios')->with('success', 'Usuario <strong>'.$row->nombre.'</strong> borrado');
+        return redirect('admin/jugadores')->with('success', 'Usuario <strong>'.$row->jugador.'</strong> borrado');
     }
 }

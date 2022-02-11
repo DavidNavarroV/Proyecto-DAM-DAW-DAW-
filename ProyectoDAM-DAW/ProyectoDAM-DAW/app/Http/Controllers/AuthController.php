@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\Jugador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,8 +17,8 @@ class AuthController extends Controller
     public function autenticar(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
+            'email ' => ['required', 'email '],
+            'contraseña' => ['required']
         ]);
         $credentials['activo'] = 1;
 
@@ -29,7 +29,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'El email no está registrado.',
+            'email ' => 'El email  no está registrado.',
         ]);
     }
 
@@ -41,20 +41,20 @@ class AuthController extends Controller
     public function registrarse(Request $request)
     {
         $request->validate([
-            'nombre' => 'required',
-            'email' => 'required|email|unique:usuarios',
-            'password' => 'required|confirmed|min:6',
+            'jugador' => 'required',
+            'email ' => 'required|email |unique:jugadores',
+            'contraseña' => 'required|confirmed|min:6',
         ]);
 
         $data = $request->all();
 
-        $usuario = Usuario::create([
-            'nombre' => $data['nombre'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+        $jugador = jugador::create([
+            'jugadores' => $data['jugadores'],
+            'email ' => $data['email '],
+            'contraseña' => Hash::make($data['contraseña'])
         ]);
 
-        Auth::login($usuario);
+        Auth::login($jugador);
 
         return redirect("admin")->withSuccess('Te has registrado correctamente. Bienvenido');
     }
