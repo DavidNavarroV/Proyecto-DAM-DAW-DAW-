@@ -27,7 +27,7 @@ class Jugador extends Authenticatable
     protected $fillable = [
         'nombre',
         'email',
-        'contraseña',
+        'password',
     ];
 
     /**
@@ -36,7 +36,7 @@ class Jugador extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'contraseña',
+        'password',
         'remember_token',
     ];
 

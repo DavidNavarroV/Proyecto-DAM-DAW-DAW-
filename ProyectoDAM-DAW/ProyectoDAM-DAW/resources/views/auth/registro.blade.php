@@ -24,7 +24,7 @@
                     <label for="password-confirm">Repetir contraseña</label>
                 </div>
                 <div class="input-field col s12">
-                    <a href="{{ route('admin') }}" title="Volver">
+                    <a href="{{ route('acceder') }}" title="Volver">
                         <button class="btn waves-effect waves-light" type="button">Volver
                             <i class="material-icons right">refresh</i>
                         </button>

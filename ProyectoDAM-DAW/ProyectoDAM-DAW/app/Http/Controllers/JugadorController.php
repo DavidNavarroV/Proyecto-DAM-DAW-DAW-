@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Jugador;
-use App\Http\Requests\UsuarioRequest;
+use App\Http\Requests\JugadorRequest;
 
 class JugadorController extends Controller
 {
@@ -58,10 +58,10 @@ class JugadorController extends Controller
     {
         Jugador::create([
             'jugador' => $request->jugador,
-            'correo' => $request->correo,
-            'contraseña' => Hash::make($request->contraseña),
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
             'jugadores' => ($request->jugadores) ? 1 : 0,
-            'noticias' => ($request->noticias) ? 1 : 0,
+            //'noticias' => ($request->noticias) ? 1 : 0,
         ]);
 
         return redirect('admin/jugadores')->with('success', 'Usuario <strong>'.$request->jugador.'</strong> creado');
@@ -96,8 +96,8 @@ class JugadorController extends Controller
 
         Jugador::where('id', $row->id)->get(); ([
             'jugador' => $request->jugador,
-            'correo' => $request->correo,
-            'contraseña' => ($request->cambiar_clave) ? Hash::make($request->contraseña) : $row->contraseña,
+            'email' => $request->email,
+            'password' => ($request->cambiar_clave) ? Hash::make($request->password) : $row->password,
 
         ]);
 

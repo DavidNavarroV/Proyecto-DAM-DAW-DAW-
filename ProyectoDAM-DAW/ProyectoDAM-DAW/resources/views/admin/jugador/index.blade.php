@@ -20,6 +20,7 @@
                         <a href="{{ url("admin/jugadores/crear") }}" title="Añadir nuevo usuario">
                             <i class="material-icons">add_circle</i>
                         </a>
+
                     </div>
                 </div>
             </div>
@@ -42,7 +43,7 @@
                             </a>
 
                             <a href="{{ url("admin/jugadores/activar/".$row->id) }}" title="{{ Vistas::titulo($row->activo) }}">
-                                <i class="{{ $color }} material-icons">{{ Vistas::icono($row->activo) }}</i>
+                                <i class="{{ Vistas::color($row->activo) }} material-icons">{{ Vistas::icono($row->activo) }}</i>
                             </a>
                             <a href="#" class="activator" title="Borrar">
                                 <i class="material-icons">delete</i>

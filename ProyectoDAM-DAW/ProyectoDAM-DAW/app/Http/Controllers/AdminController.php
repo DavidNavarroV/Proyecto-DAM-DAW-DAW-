@@ -16,4 +16,8 @@ class AdminController extends Controller
     {
         return view('admin.acerca-de');
     }
+    public function inicio()
+    {
+        return view('admin.acerca-de');
+    }
 }
