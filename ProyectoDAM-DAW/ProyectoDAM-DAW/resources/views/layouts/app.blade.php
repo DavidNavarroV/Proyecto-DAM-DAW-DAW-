@@ -24,7 +24,7 @@
     <div class="nav-wrapper">
         <!--Logo-->
         <a href="{{ route('home') }}" class="brand-logo" title="Inicio">
-            {{ Html::image('img/', 'Logo Juego') }}
+            {{ Html::image('img/logo.jpg', 'Logo Street Find') }}
         </a>
 
         <!--Botón menú móviles-->
@@ -60,7 +60,7 @@
 <main>
 
     <header>
-        <h1>Nombre del Juego</h1>
+        <h1>Street Find</h1>
     </header>
 
     <section class="container-fluid">

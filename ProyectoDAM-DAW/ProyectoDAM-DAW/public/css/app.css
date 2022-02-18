@@ -3,11 +3,14 @@
 html{
     color: #333;
 }
-
+@font-face {
+    font-family: miFuente;
+src: local(open-sans), url(font/ThaleahFat.ttf)}
 body{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    font-family: miFuente;
 }
 
 nav{
@@ -15,11 +18,12 @@ nav{
     box-shadow: none;
     -webkit-box-shadow: none;
     padding: 0 2rem;
+
 }
 
 nav img{
-    width: 8rem;
-    padding-top: 0.8rem;
+    width: 4rem;
+    padding-top: 0.2rem;
 }
 
 main {

@@ -3,11 +3,14 @@
 html{
     color: #333;
 }
-
+@font-face {
+    font-family: miFuente;
+    src: local(open-sans), url(font/ThaleahFat.ttf)}
 body{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    font-family: miFuente;
 }
 
 nav{
@@ -15,11 +18,12 @@ nav{
     box-shadow: none;
     -webkit-box-shadow: none;
     padding: 0 2rem;
+
 }
 
 nav img{
-    width: 8rem;
-    padding-top: 0.8rem;
+    width: 4rem;
+    padding-top: 0.2rem;
 }
 
 main {
@@ -134,4 +138,47 @@ article .card-info{
 
 form p{
     padding-left: 0.8rem;
+}
+/* PAGINADOR */
+
+.paginado nav{
+    background: none;
+    margin-top: 2rem;
+    line-height: normal;
+}
+
+.pagination li{
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+    margin-right: 0.1rem;
+    border: 1px solid rgb(30,30,30);
+    border-radius: unset;
+}
+
+.pagination li a{
+    padding: 0;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: rgb(100,100,100);
+}
+
+.pagination li a:hover{
+    color: rgb(30,30,30);
+    font-weight: bold;
+    background: none;
+}
+
+.pagination li.active{
+    background: rgb(30,30,30);
+    color: #fff;
+}
+
+.pagination li.disabled {
+    border: 1px solid #BBB;
+    color: #BBB;
+}
+
+.pagination li.active {
+    background-color: rgb(30,30,30);
+    color: #FFF;
 }

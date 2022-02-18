@@ -24,7 +24,7 @@
     <div class="nav-wrapper">
         <!--Logo-->
         <a href="{{ route('acceder') }}" class="brand-logo" title="Inicio">
-            {{ Html::image('img/logo.svg', 'Logo Harry Potter') }}
+            {{ Html::image('img/logo.jpg', 'Logo Street Find') }}
         </a>
 
         <!--Botón menú móviles-->
@@ -36,9 +36,9 @@
                 <li>
                     <a href="{{ route('admin') }}" title="Inicio">Inicio</a>
                 </li>
-                @if( Auth::user()->noticias )
+                @if( Auth::user()->estadisticas )
                     <li>
-                        <a href="{{ url('admin/noticias') }}" title="Noticias">Noticias</a>
+                        <a href="{{ url('admin/estadisticas/index/{id}') }}" title="Estadisticas">Mis estadísticas</a>
                     </li>
                 @endif
                 @if( Auth::user()->jugadores )
@@ -66,16 +66,18 @@
         <li>
             <a href="{{ route('admin') }}" title="Inicio">Inicio</a>
         </li>
-        @if( Auth::user()->noticias )
-            <li>
-                <a href="{{ url('admin/noticias') }}" title="Noticias">Noticias</a>
-            </li>
-        @endif
-        @if( Auth::user()->jugadores )
+
+        @if( Auth::user()->jugadores)
             <li>
                 <a href="{{ url('admin/jugadores') }}" title="Jugadores">jugadores</a>
             </li>
+
+        @elseif(Auth::user()->estadisticas)
+            <li>
+                <a href="{{ url('admin/estadisticas/index/{id}') }}" title="Estadisticas">Mis estadísticas</a>
+            </li>
         @endif
+
         <li>
             <form method="POST" action="{{ route('salir') }}">
                 @csrf
@@ -99,7 +101,7 @@
 <!--echo 1-->
             <h1>
 
-                Bienvenido <strong>{{Auth::user()->jugador}}</strong>
+                Bienvenido a Street Find, <strong>{{Auth::user()->jugador}}</strong>
             </h1>
 
         @else

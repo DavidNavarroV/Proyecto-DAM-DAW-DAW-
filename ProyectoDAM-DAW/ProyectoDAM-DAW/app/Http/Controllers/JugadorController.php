@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Partida;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +28,7 @@ class JugadorController extends Controller
     public function index()
     {
         //Obtengo todos los usuarios ordenados por nombre
-        $rowset = Jugadores::orderBy("nombre","ASC")->get();
+        $rowset = Jugadores::orderBy("jugador","ASC")->get();
 
         /*return view('admin.usuarios.index',[
             'rowset' => $rowset,
@@ -137,4 +138,21 @@ class JugadorController extends Controller
 
         return redirect('admin/jugadores')->with('success', 'Jugador <strong>'.$row->nombre.'</strong> borrado');
     }
+    /**
+     * Ver estadisticas 1j.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    //Estadistica -> 1j
+    public function estadisticas($id)
+    {
+        //Obtengo el usuario y muestro la estadistica
+        $row = Partida::where('jugador', $id)->limit(5);
+        echo ($row-> jugador);
+        echo ($row-> puntos . " puntos");
+        echo ($row-> tiempo . "?");
+    }
+
+
 }
