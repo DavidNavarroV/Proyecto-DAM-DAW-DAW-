@@ -50,21 +50,16 @@ class ApiController extends Controller
 
     }
 
-/* public function escribir($id){
-        //Url de destino
-        $url = route('mostrar');
+public function escribir($jugador,$puntos,$fecha,$tiempo){
 
-        $data = file_get_contents($url);
-        $items = json_decode($data, true);
-
-        Noticia::insert(
+        Partida::insert(
             [
-                'titulo' => $items[$id]["titulo"],
-                'entradilla' => $items[$id]["entradilla"],
-                'fecha' => \DateTime::createFromFormat("d/m/Y", $items[$id]["fecha"])->format("Y-m-d H:i:s"),
-                'autor' => $items[$id]["autor"],
+                'jugador' => $jugador,
+                'puntos' => $puntos,
+                'fecha' => \DateTime::createFromFormat("d-m-Y", $fecha)->format("Y-m-d H:i:s"),
+                'tiempo' => $tiempo,
 
             ]
         );
-    }*/
+    }
 }
